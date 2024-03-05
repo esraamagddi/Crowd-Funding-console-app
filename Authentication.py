@@ -56,7 +56,6 @@ class Authentication:
                 print("Password not found in the user file")
                 return False
 
-
     def user_exists(self, email):
         return os.path.exists(self.users_dir + email + ".txt")
 
