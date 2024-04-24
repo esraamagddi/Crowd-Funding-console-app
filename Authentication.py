@@ -47,7 +47,7 @@ class Authentication:
 
             if stored_password is not None:
                 if stored_password == password:
-                    print("Login successful")
+                    # print("Login successful")
                     return True
                 else:
                     print("Invalid password")
@@ -64,3 +64,15 @@ class Authentication:
 
     def validate_phone(self, phone):
         return phone.startswith('+20') and len(phone) == 13
+
+    def search_projects_by_email(self, email):
+        found_projects = []
+        for project_file in os.listdir("projects/"):
+            with open(os.path.join("projects/", project_file), "r") as f:
+                lines = f.readlines()
+                if len(lines) >= 6:  
+                    owner_email = lines[5].split(":")[1].strip()
+                    if owner_email == email:
+                        found_projects.append(project_file)
+        return found_projects
+
